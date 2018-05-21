@@ -1,5 +1,5 @@
 {
-  "name": "btejeda-filewrite",
+  "name": "btejeda-bash_profile",
   "version": "0.1.0",
   "author": "Bryan Tejeda",
   "summary": "",
@@ -32,7 +32,7 @@
       "operatingsystemrelease": [
         "6"
       ]
-    },
+    }
   ],
   "requirements": [
     {

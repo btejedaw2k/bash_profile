@@ -27,7 +27,7 @@
 #     Mode of the file for permitions
 #     Default: 0644
 
-class conf (
+class bash_profile (
     Optional[String]                            $file_parent_file       = '/etc/profile',
     Optional[String]                            $file_path              = '/etc/profile.d',
     Optional[String]                            $file_names             = [],
@@ -52,7 +52,7 @@ class conf (
       ensure  =>  file_ensure,
       path    =>  $file_parent_file,
       group   =>  $file_group,
-      owner   ->  $file_owner,
+      owner   =>  $file_owner,
       mode    =>  $file_mode,
       type    =>  'file',
       content =>  template("${module_name}/${file_template}"),
