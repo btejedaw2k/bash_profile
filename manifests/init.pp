@@ -28,34 +28,32 @@
 #     Default: 0644
 
 class bash_profile (
-    Optional[String]                            $file_parent_file       = '/etc/profile',
-    Optional[String]                            $file_path              = '/etc/profile.d',
-    Optional[String]                            $file_names             = [],
-    Optional[String]                            $file_ensure            = 'present',
-    Optional[String]                            $file_owner             = 'root',
-    Optional[String]                            $file_group             = 'root',
-    Optional[String]                            $file_mode              = '0644',
-    Optional[String]                            $file_template          = 'profile_template.erb',
+    String    $file_parent_file     = '/etc/profile',
+    String    $file_path            = '/etc/profile.d',
+    String    $file_source_path     = undef,
+    String    $file_names           = {},
+    String    $file_ensure          = 'present',
+    String    $file_owner           = 'root',
+    String    $file_group           = 'root',
+    String    $file_mode            = '0644',
+    String    $file_template        = 'profile_template.erb',
 ) {
-  $file_names.each |String $file_name| {
+  File {
+    ensure  =>  $file_ensure,
+    group   =>  $file_group,
+    owner   =>  $file_owner,
+    mode    =>  $file_mode,
+  }
+  # resources file master
+  file { $file_parent_file:
+    content =>  template("${module_name}/${file_template}"),
+  }
+  $file_names.each |$index, $file_name| {
     # resources config file
-    file { "${file_path}/${file_name}":
-      ensure  =>  $file_ensure,
-      path    =>  "${file_path}/${file_name}",
-      group   =>  $file_group,
-      owner   =>  $file_owner,
-      mode    =>  $file_mode,
-      require =>  file[$file_parent_file],
+    file { "${file_path}/${file_name}.sh":
+      source  => "${file_source_path}/${file_name}",
+      require => file[$file_parent_file],
     }
-    # resources file master
-    file { $file_parent_file:
-      ensure  =>  file_ensure,
-      path    =>  $file_parent_file,
-      group   =>  $file_group,
-      owner   =>  $file_owner,
-      mode    =>  $file_mode,
-      type    =>  'file',
-      content =>  template("${module_name}/${file_template}"),
-    }
+     
   }
 }

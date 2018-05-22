@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'filewrite' do
+describe 'bash_profile' do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
