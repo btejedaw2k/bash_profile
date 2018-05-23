@@ -3,34 +3,23 @@
 #
 #
 # Parameters:
-#   [*file_path*]
-#     This is the file path to write this resourse file will 
-#     Default: '/etc/profile.d/sandals_profile.sh'
-#
-#   [*file_name*]
-#     This is the file name to write this resourse file will 
-#     Default: '/etc/profile.d/sandals_profile.sh'
 #
 #   [*file_ensure*]
 #     This is to ensure the file exist
 #     Defatul: present
 #
-#   [*file_owner*]
-#     User owner of the file
-#     Defatul: root
+#   [*file_template*]
+#     default template for the class
+#     Default: 0644
 #
-#   [*file_group*]
-#     Group owner of the file
-#     Defatul: root
-#
-#   [*file_mode*]
+#   [*file_parent_file*]
 #     Mode of the file for permitions
 #     Default: 0644
 
 class bash_profile (
-    String    $file_template        = 'profile_template.erb',
-    String    $file_parent_file     = '/etc/profile',
-    String    $file_ensure          = 'present'
+  String    $file_ensure          = 'present'
+  String    $file_template        = 'profile_template.erb',
+  String    $file_parent_file     = '/etc/profile',
 ) {
   File {
     ensure  =>  $file_ensure,

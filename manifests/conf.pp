@@ -12,7 +12,7 @@ define bash_profile::conf (
 
   include ::bash_profile
 
-  file { "${name}.${file_type}":
+  file { "/etc/profile.d/${name}.${file_type}":
     notify => $name,
     source => $source,
   }
