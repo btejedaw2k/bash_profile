@@ -28,32 +28,18 @@
 #     Default: 0644
 
 class bash_profile (
-    String    $file_parent_file     = '/etc/profile',
-    String    $file_path            = '/etc/profile.d',
-    String    $file_source_path     = undef,
-    String    $file_names           = {},
-    String    $file_ensure          = 'present',
-    String    $file_owner           = 'root',
-    String    $file_group           = 'root',
-    String    $file_mode            = '0644',
     String    $file_template        = 'profile_template.erb',
+    String    $file_parent_file     = '/etc/profile',
+    String    $file_ensure          = 'present'
 ) {
   File {
     ensure  =>  $file_ensure,
-    group   =>  $file_group,
-    owner   =>  $file_owner,
-    mode    =>  $file_mode,
+    group   =>  'root',
+    owner   =>  'root',
+    mode    =>  '0644',
   }
   # resources file master
   file { $file_parent_file:
     content =>  template("${module_name}/${file_template}"),
-  }
-  $file_names.each |$index, $file_name| {
-    # resources config file
-    file { "${file_path}/${file_name}.sh":
-      source  => "${file_source_path}/${file_name}",
-      require => file[$file_parent_file],
-    }
-     
   }
 }
