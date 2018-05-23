@@ -34,7 +34,7 @@ class bash_profile (
     default => $file_template,
   }
   file { $file_parent_name:
-    content =>  $file_template_content,
+    content =>  template($file_template_content),
   }
   $config_files.each |String $key, Hash $value| {
     file { "${file_parent_dir}/${key}":
