@@ -17,7 +17,7 @@
 #     Default: 0644
 
 class bash_profile (
-  String    $file_ensure          = 'present'
+  String    $file_ensure          = 'present',
   String    $file_template        = 'profile_template.erb',
   String    $file_parent_file     = '/etc/profile',
 ) {
