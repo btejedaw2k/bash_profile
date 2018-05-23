@@ -19,7 +19,7 @@
 class bash_profile (
   String    $file_ensure      = 'present',
   String    $file_template    = 'profile_template.erb',
-  String    $file_parent_file = '/etc/profile',
+  String    $file_parent_file = '/etc/profile.d'
   String    $file_type        = 'sh',
   Hash      $config_files     = {},
 ) {
