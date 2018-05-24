@@ -18,7 +18,7 @@
 
 class bash_profile (
   Enum['present', 'absent']   $file_ensure      = 'present',
-  Optional[String]            $file_template    = 'profile_template.erb',
+  Optional[String]            $file_template    = undef,
   String                      $file_parent_name = '/etc/profile',
   String                      $file_directory   = '/etc/profile.d',
   Optional[Hash]              $config_files,
