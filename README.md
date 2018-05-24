@@ -1,9 +1,10 @@
 
-# profile
+# Bash Profile Module
 
-Welcome to your new module. A short overview of the generated parts can be found in the PDK documentation at https://puppet.com/pdk/latest/pdk_generating_modules.html .
+Welcome Bash Profile management module. 
+This module was generated wiht Pupped Developement Kit, see documentation on: https://puppet.com/pdk/latest/pdk_generating_modules.html .
 
-The README template below provides a starting point with details about what information to include in your README.
+The README File provide information about how this module works
 
 
 
@@ -25,9 +26,11 @@ The README template below provides a starting point with details about what info
 
 ## Description
 
-Start with a one- or two-sentence summary of what the module does and/or what problem it solves. This is your 30-second elevator pitch for your module. Consider including OS/Puppet version it works with.
+#### Apply For RedHat and CentOS 6 & 7 (still under developer).
 
-You can give more descriptive information in a second paragraph. This paragraph should answer the questions: "What does this module *do*?" and "Why would I use it?" If your module has a range of functionality (installation, configuration, management, etc.), this is the time to mention it.
+With this module you are able to add has many bash files you need into CentOS or RedHat /etc/profile.d/ directory that contains a specific script in how you need to be every ssh login to be formated, you can also edit the template of the /etc/profile file to have core change in the CentOS-RedHat general Profile.
+
+The porpuse of the module is to have independent profiles costumizations under the /etc/profile.d/ directory including costumize the /etc/profile template that is by default under this module.
 
 ## Setup
 
