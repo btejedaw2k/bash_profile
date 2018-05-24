@@ -17,30 +17,33 @@
 #     Default: 0644
 
 class bash_profile (
-  String              $file_ensure      = 'present',
-  Optional[String]    $file_template    =  undef,
-  String              $file_parent_name = '/etc/profile',
-  String              $file_parent_dir  = '/etc/profile.d',
-  Hash                $config_files     = {},
+  Enum['present', 'absent']   $file_ensure,
+  Optional[String]            $file_template,
+  Stdlib::Absolutepath        $file_parent_name = '/etc/profile',
+  Stdlib::Absolutepath        $file_directory   = '/etc/profile.d',
+  Hash                        $config_files     = {},
 ) {
+
   File {
     ensure    => $file_ensure,
     group     => 'root',
     owner     => 'root',
     mode      => '0644',
   }
+
   $file_template_content = $file_template  ? {
     undef => "${module_name}/profile_template.erb",
     default => $file_template,
   }
+
   file { $file_parent_name:
     content =>  template($file_template_content),
   }
+
   $config_files.each |String $key, Hash $value| {
-    file { "${file_parent_dir}/${key}":
+    file { "${file_directory}/${key}":
       *       => $value,
       require => File[$file_parent_name],
     }
-    #  resources file master
   }
 }
