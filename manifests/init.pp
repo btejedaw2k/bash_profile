@@ -23,7 +23,6 @@ class bash_profile (
   String                      $file_directory   = '/etc/profile.d',
   Optional[Hash]              $config_files,
 ) {
-
   File {
     ensure    => $file_ensure,
     group     => 'root',
