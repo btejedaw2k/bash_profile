@@ -17,10 +17,10 @@
 #     Default: 0644
 
 class bash_profile (
-  Enum['present', 'absent']   $file_ensure      = 'present',
-  Optional[String]            $file_template    = undef,
-  String                      $file_parent_name = '/etc/profile',
-  String                      $file_directory   = '/etc/profile.d',
+  Enum['present', 'absent']   $file_ensure,
+  Optional[String]            $file_template,
+  Stdlib::Absolutepath        $file_parent_name = '/etc/profile',
+  Stdlib::Absolutepath        $file_directory   = '/etc/profile.d',
   Optional[Hash]              $config_files,
 ) {
 
