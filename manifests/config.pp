@@ -21,7 +21,7 @@ define bash_profile::config (
     }
 
     warning( "${real_file_directory}/${name}" )
-    if account == undef {
+    if $account == undef {
       file { "${real_file_directory}/${name}":
         ensure  => $file_ensure,
         source  => $source,
