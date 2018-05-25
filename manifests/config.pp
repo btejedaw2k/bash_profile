@@ -1,7 +1,32 @@
 # Define: bash_profile::config
-# Parameters:
-# arguments:
 #
+# Parameters:
+#   [*source*]
+#     This is where the contest to be pased on the file is going to be stred
+#     Default: undef
+#
+#   [*file_ensure*]
+#     This is to ensure the file exist
+#     Defatul: present
+#
+#   
+#   [*file_directory*]
+#     this is the direcory where the file is going to be saved
+#     Default: /etc/profile.d
+#
+#   [*file_parent_name*]
+#     This is the parrent file of the confuration for the OS
+#     Default: /etc/profile
+#
+#   [*account*]   
+#     This is the OS user accoint .bashprofile you what to change
+#     If this variable is not set the module will undertand that the file to edit us under /etc/profile
+#     Default: undef
+#
+#
+#
+#
+
 define bash_profile::config (
   Optional[String]          $source           = undef,
   Enum['present', 'absent'] $file_ensure      = $bash_profile::file_ensure,
