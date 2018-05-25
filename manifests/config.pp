@@ -22,8 +22,8 @@ define bash_profile::config (
 
     warning( "${real_file_directory}/${name}" )
     file { "${real_file_directory}/${name}":
-      ensure  => $file_ensure,
-      source  => $source,
+      ensure => $file_ensure,
+      source => $source,
     }
   }
 }
