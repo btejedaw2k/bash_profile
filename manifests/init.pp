@@ -10,11 +10,21 @@
 #
 #   [*file_template*]
 #     default template for the class
-#     Default: 0644
+#     Default: undef
 #
-#   [*file_parent_file*]
-#     Mode of the file for permitions
-#     Default: 0644
+#   [*file_parent_name*]
+#     This is the parrent file of the confuration for the OS
+#     Default: /etc/profile
+#
+#   [*file_directory*]
+#     this is the direcory where the file is going to be saved
+#     Default: /etc/profile.d
+#
+#   [*config_files*](Hash)
+#     This variable will store all the source and and acount to be change including the path
+#     where the file is going to be sorted
+#     Default: empty
+#
 
 class bash_profile (
   Enum['present', 'absent']   $file_ensure      = 'present',
@@ -38,6 +48,6 @@ class bash_profile (
   file { $file_parent_name:
     content =>  template($file_template_content),
   }
-  $configs = lookup('bash_profile', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, $config_files)
+  $configs = lookup('bash_profile::configs', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, $config_files)
   create_resources('bash_profile::config', $configs)
 }
