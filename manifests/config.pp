@@ -3,11 +3,11 @@
 # arguments:
 #
 define bash_profile::config (
-  Optional[String]            $source           = undef,
-  Enum['present', 'absent']   $file_ensure      = $bash_profile::file_ensure,
-  Optional[String]            $file_directory   = $bash_profile::file_directory,
-  Optional[String]            $file_parent_name = $bash_profile::file_parent_name,
-  Optional[String]            $account          = undef,
+  Optional[String]          $source           = undef,
+  Enum['present', 'absent'] $file_ensure      = $bash_profile::file_ensure,
+  String                    $file_directory   = $bash_profile::file_directory,
+  String                    $file_parent_name = $bash_profile::file_parent_name,
+  Optional[String]          $account          = undef,
 ) {
 
   if ($source == undef) or (file_name == undef) {
@@ -17,13 +17,22 @@ define bash_profile::config (
 
     $real_file_directory = $account ? {
       undef   => $file_directory,
-      default => "/home/${account}",
+      default => "/home/${account}/",
     }
 
     warning( "${real_file_directory}/${name}" )
-    file { "${real_file_directory}/${name}":
-      ensure => $file_ensure,
-      source => $source,
+    if account == undef {
+      file { "${real_file_directory}/${name}":
+        ensure  => $file_ensure,
+        source  => $source,
+        require => File[$file_parent_name],
+      }
+    }
+    else {
+      file { "${real_file_directory}/.${name}":
+        ensure => $file_ensure,
+        source => $source,
+      }
     }
   }
 }
