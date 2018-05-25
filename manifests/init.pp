@@ -39,10 +39,8 @@ class bash_profile (
     content =>  template($file_template_content),
   }
 
-  $config_files.each |String $key, Hash $value| {
-    file { "${file_directory}/${key}":
-      *       => $value,
-      require => File[$file_parent_name],
-    }
-  }
+#  $configs = lookup('bash_profile', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, $config_files)
+
+  create_resource('bash_profile::config', $configs)
+
 }
