@@ -17,7 +17,7 @@ define bash_profile::config (
 
     $real_file_directory = $account ? {
       undef   => $file_directory,
-      default => "/home/${account}/",
+      default => "/home/${account}",
     }
 
     warning( "${real_file_directory}/${name}" )
