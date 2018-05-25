@@ -38,9 +38,6 @@ class bash_profile (
   file { $file_parent_name:
     content =>  template($file_template_content),
   }
-
-#  $configs = lookup('bash_profile', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, $config_files)
-
+  $configs = lookup('bash_profile', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, $config_files)
   create_resource('bash_profile::config', $configs)
-
 }
