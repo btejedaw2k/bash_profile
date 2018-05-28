@@ -53,3 +53,4 @@ bash_profile::config_files:
 * By setting up the account name the default directory will be changed from /etc/profile.d to /home/accountname adding the file you named on each hiera variable for bash_profile::config_files.
 * If the directory is diferent than the default /home/accountname you can specified the path or leave it blank for default configuration (/home/accountname).
 * **Documentation:** profile1 and profile2 are the variable definition for the files names.
+* You can repleace the **config_file** variable name for **configs** only with hiera to look like this: **bash_profile::configs**
