@@ -31,7 +31,7 @@ class bash_profile (
   Optional[String]            $file_template    = undef,
   String                      $file_parent_name = '/etc/profile',
   String                      $file_directory   = '/etc/profile.d',
-  Optional[Hash]              $config_files,
+  Optional[Hash]              $config_files     = {},
 ) {
   File {
     ensure    => $file_ensure,
