@@ -43,7 +43,7 @@ class { 'bash_profile':
 ```
 
 ### Hiera usage
-```puppet
+```yaml
 bash_profile::config_files:
 	'profile1':
 		'source': '<source where your bash profile script is located>'
