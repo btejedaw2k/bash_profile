@@ -9,14 +9,7 @@ The README File provide information about how this module works
 #### Table of Contents
 
 1. [Description](#description)
-2. [Setup - The basics of getting started with profile](#setup)
-    * [What profile affects](#what-profile-affects)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with profile](#beginning-with-profile)
-3. [Usage - Configuration options and additional functionality](#usage)
-4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+2. [Usage - Configuration options and additional functionality](#usage)
 
 ## Description
 
@@ -33,7 +26,7 @@ The porpuse of the module is to have independent profiles costumizations under t
 
 ##### Load module
 ```puppet
-	include bash_profile
+include bash_profile
 ```
 ### Use bash_profile with puppet code
 
@@ -55,4 +48,4 @@ bash_profile::config_files:
     'source': '<source where your bash profile script is located>'
     'account': '<OS account>'
 ```
-**By setting up the account name the default directory where the profile bash will be save change from /etc/profile.d/ to /home/accountname**
+**By setting up the account name the default directory will be changed change from /etc/profile.d/ to /home/accountname**
