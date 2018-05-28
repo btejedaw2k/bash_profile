@@ -49,7 +49,7 @@ bash_profile::config_files:
     'account_dir': "<directoru of the account, if the directory is diferent than /home/accountname>"
 ```
 ### Notes:
-* For directory paths never end the string with a /.
+* For directory paths never end the string with a '/' symbol.
 * By setting up the account name the default directory will be changed from /etc/profile.d to /home/accountname adding the file you named on each hiera variable for bash_profile::config_files.
 * If the directory is diferent than the default /home/accountname you can specified the path or leave it blank for default configuration (/home/accountname).
 * **Documentation:** profile1 and profile2 are the variable definition for the files names.
