@@ -47,7 +47,7 @@ define bash_profile::config (
     }
 
     $real_file_directory = $account_dir ? {
-      undef =>  $set_file_directory,
+      undef   =>  $set_file_directory,
       default => $account_dir,
     }
 
