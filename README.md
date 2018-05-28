@@ -31,6 +31,10 @@ The porpuse of the module is to have independent profiles costumizations under t
 ### Warning
 **This module will configure you bash profile configuration**
 
+##### Load module
+```puppet
+	include bash_profile
+```
 ### Use bash_profile with puppet code
 
 ```puppet
