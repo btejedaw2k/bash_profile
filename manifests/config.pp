@@ -33,6 +33,7 @@ define bash_profile::config (
   String                    $file_directory   = $bash_profile::file_directory,
   String                    $file_parent_name = $bash_profile::file_parent_name,
   Optional[String]          $account          = undef,
+  Optional[String]          $account_dir      = undef,
 ) {
 
   if ($source == undef) or (file_name == undef) {
@@ -40,9 +41,14 @@ define bash_profile::config (
   }
   else {
 
-    $real_file_directory = $account ? {
+    $set_file_directory = $account ? {
       undef   => $file_directory,
       default => "/home/${account}",
+    }
+
+    $real_file_directory = $account_dir ? {
+      undef   =>  $set_file_directory,
+      default => $account_dir,
     }
 
     warning( "${real_file_directory}/${name}" )

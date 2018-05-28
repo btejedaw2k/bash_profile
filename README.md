@@ -48,4 +48,4 @@ bash_profile::config_files:
     'source': '<source where your bash profile script is located>'
     'account': '<OS account>'
 ```
-**By setting up the account name the default directory will be changed from /etc/profile.d/ to /home/accountname**
+**By setting up the account name the default directory will be changed from /etc/profile.d/ to /home/accountname/ adding the file you named on each hiera variable for bash_profile::config_files.**
