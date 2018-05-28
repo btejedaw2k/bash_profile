@@ -36,8 +36,8 @@ define bash_profile::config (
   Optional[String]          $account_dir      = undef,
 ) {
 
-  if ($source == undef) or (file_name == undef) {
-    warning( 'There is not source and or file name to create bash profile, please insert a source and a file name' )
+  if ($source == undef){
+    warning( 'There is not source to create bash profile, please insert a source' )
   }
   else {
 
@@ -47,11 +47,10 @@ define bash_profile::config (
     }
 
     $real_file_directory = $account_dir ? {
-      undef   =>  $set_file_directory,
+      undef   => $set_file_directory,
       default => $account_dir,
     }
 
-    warning( "${real_file_directory}/${name}" )
     if $account == undef {
       file { "${real_file_directory}/${name}":
         ensure  => $file_ensure,
@@ -65,5 +64,6 @@ define bash_profile::config (
         source => $source,
       }
     }
+
   }
 }
