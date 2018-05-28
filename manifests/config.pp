@@ -64,5 +64,6 @@ define bash_profile::config (
         source => $source,
       }
     }
+
   }
 }
