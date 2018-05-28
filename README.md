@@ -26,7 +26,7 @@ The porpuse of the module is to have independent profiles costumizations under t
 
 ##### Load module
 ```puppet
-	include bash_profile
+include bash_profile
 ```
 ### Use bash_profile with puppet code
 
