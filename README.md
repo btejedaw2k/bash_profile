@@ -45,10 +45,10 @@ class { 'bash_profile':
 ### Hiera usage
 ```yaml
 bash_profile::config_files:
-	'profile1':
-		'source': '<source where your bash profile script is located>'
-	'profile2':
-		'source': '<source where your bash profile script is located>'
-		'account': '<OS account>'
+  'profile1':
+    'source': '<source where your bash profile script is located>'
+  'profile2':
+    'source': '<source where your bash profile script is located>'
+    'account': '<OS account>'
 ```
 **By setting up the account name the default directory where the profile bash will be save change from /etc/profile.d/ to /home/accountname**
