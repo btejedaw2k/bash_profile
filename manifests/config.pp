@@ -23,7 +23,9 @@
 #     If this variable is not set the module will undertand that the file to edit us under /etc/profile
 #     Default: undef
 #
-#
+#   [*account_dir*]
+#     Directory whare the bash profile file will be saved.
+#     Defaul: undef
 #
 #
 
