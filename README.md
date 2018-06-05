@@ -32,7 +32,7 @@ include bash_profile
 
 ```puppet
 class { 'bash_profile':
-	'config_files' => {
+	config_files => {
 		'profile1' => { 'source' => "<source where your bash profile script is located>" },
 		'profile2' => { 'source' => "<source where your bash profile script is located>", 'account' => "<OS account>", 'account_dir' => "<directory of the account, not mandatory>"},
 	}
