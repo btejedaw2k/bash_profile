@@ -31,9 +31,6 @@
 
 define bash_profile::config (
   Optional[String]          $source           = undef,
-  Enum['present', 'absent'] $file_ensure      = $bash_profile::file_ensure,
-  String                    $file_directory   = $bash_profile::file_directory,
-  String                    $file_parent_name = $bash_profile::file_parent_name,
   Optional[String]          $account          = undef,
   Optional[String]          $account_dir      = undef,
 ) {
@@ -46,25 +43,25 @@ define bash_profile::config (
   else {
 
     $set_file_directory = $account ? {
-      undef   => $file_directory,
+      undef   => $bash_profile::file_directory,
       default => "/home/${account}",
     }
 
     $real_file_directory = $account_dir ? {
-      undef   => $set_file_directory,
+      undef   => $bash_profile::file_parent_name,
       default => $account_dir,
     }
 
     if $account == undef {
       file { "${real_file_directory}/${name}":
-        ensure  => $file_ensure,
+        ensure  => $bash_profile::file_ensure,
         source  => $source,
-        require => File[$file_parent_name],
+        require => File[$bash_profile::file_parent_name],
       }
     }
     else {
       file { "${real_file_directory}/.${name}":
-        ensure => $file_ensure,
+        ensure => $bash_profile::file_ensure,
         source => $source,
       }
     }
