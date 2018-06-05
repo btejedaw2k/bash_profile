@@ -48,7 +48,7 @@ define bash_profile::config (
     }
 
     $real_file_directory = $account_dir ? {
-      undef   => $bash_profile::file_parent_name,
+      undef   => $set_file_directory,
       default => $account_dir,
     }
 
