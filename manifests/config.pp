@@ -36,7 +36,9 @@ define bash_profile::config (
   String                    $file_parent_name = $bash_profile::file_parent_name,
   Optional[String]          $account          = undef,
   Optional[String]          $account_dir      = undef,
-) inherits bash_profile {
+) {
+
+  include bash_profile
 
   if ($source == undef){
     warning( 'There is not source to create bash profile, please insert a source' )
