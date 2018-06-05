@@ -45,13 +45,15 @@ class bash_profile (
     default => $file_template,
   }
 
-  file { $file_parent_name:
-    content =>  template($file_template_content),
-  }
+  if $config_files {
+    file { $file_parent_name:
+      content =>  template($file_template_content),
+    }
 
-  $configs = lookup('bash_profile::configs', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, $config_files)
+    $configs = lookup('bash_profile::configs', Hash, {'strategy' => 'deep', 'merge_hash_arrays' => true}, $config_files)
 
-  if !empty(configs) {
-    create_resources('bash_profile::config', $configs)
+    if !empty(configs) {
+      create_resources('bash_profile::config', $configs)
+    }
   }
 }
