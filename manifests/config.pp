@@ -46,8 +46,8 @@ define bash_profile::config (
     }
     # create bash profile
     file { "${real_file_directory}/${name}":
-      ensure  => 'present',
-      source  => $source,
+      ensure => 'present',
+      source => $source,
     }
   }
 }
