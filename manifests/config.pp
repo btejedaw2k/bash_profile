@@ -37,8 +37,8 @@ define bash_profile::config (
 
   include bash_profile
 
-  if ($source == undef){
-    warning( 'There is not source to create bash profile, please insert a source' )
+  unless $source {
+    fail( 'There is not source to create bash profile, please insert a source' )
   }
   else {
 
