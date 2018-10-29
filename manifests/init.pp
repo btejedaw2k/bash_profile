@@ -1,7 +1,6 @@
 # Class: filewrite
 #
 #
-#
 # Parameters:
 #
 #   [*file_ensure*]

@@ -14,10 +14,6 @@
 #     this is the direcory where the file is going to be saved
 #     Default: /etc/profile.d
 #
-#   [*file_parent_name*]
-#     This is the parrent file of the confuration for the OS
-#     Default: /etc/profile
-#
 #   [*account*]   
 #     This is the OS user accoint .bashprofile you what to change
 #     If this variable is not set the module will undertand that the file to edit us under /etc/profile
@@ -35,36 +31,23 @@ define bash_profile::config (
   Optional[String]          $account_dir      = undef,
 ) {
 
-  include bash_profile
-
-  if ($source == undef){
-    warning( 'There is not source to create bash profile, please insert a source' )
+  unless $source {
+    fail( 'There is not source to create bash profile, please insert a source' )
   }
   else {
-
+    # default variables
     $set_file_directory = $account ? {
-      undef   => $bash_profile::file_directory,
+      undef   => '/etc/profile.d',
       default => "/home/${account}",
     }
-
     $real_file_directory = $account_dir ? {
       undef   => $set_file_directory,
       default => $account_dir,
     }
-
-    if $account == undef {
-      file { "${real_file_directory}/${name}":
-        ensure  => $bash_profile::file_ensure,
-        source  => $source,
-        require => File[$bash_profile::file_parent_name],
-      }
+    # create bash profile
+    file { "${real_file_directory}/${name}":
+      ensure => 'present',
+      source => $source,
     }
-    else {
-      file { "${real_file_directory}/.${name}":
-        ensure => $bash_profile::file_ensure,
-        source => $source,
-      }
-    }
-
   }
 }
